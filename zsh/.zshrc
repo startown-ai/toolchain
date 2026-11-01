@@ -13,7 +13,8 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # Shorten jj's detached HEAD (jj/keep/<hash>) to 8 characters
-+vi-jj-keep() {
-    [[ ${hook_com[branch]} == jj/keep/* ]] && hook_com[branch]=${${hook_com[branch]#jj/keep/}[1,8]}
+functions[prompt_pure_preprompt_render_orig]=$functions[prompt_pure_preprompt_render]
+prompt_pure_preprompt_render() {
+    [[ ${prompt_pure_vcs_info[branch]} == jj/keep/* ]] && prompt_pure_vcs_info[branch]=${${prompt_pure_vcs_info[branch]#jj/keep/}[1,8]}
+    prompt_pure_preprompt_render_orig "$@"
 }
-zstyle ':vcs_info:git*+set-message:*' hooks jj-keep
