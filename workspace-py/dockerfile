@@ -13,7 +13,10 @@ RUN apt-get update && \
       tree=2.2.1-1+deb13u0+dhi0 && \
     rm -rf /var/lib/apt/lists/*
 
-RUN uv python install 3.14.10
+RUN uv python install 3.14.10 && \
+    rm -rf \
+      /root/.local/share/uv/python/cpython-3.14*/lib/python3.14/ensurepip \
+      /root/.local/share/uv/python/cpython-3.14*/lib/python3.14/site-packages/pip*
 
 WORKDIR /root
 ENTRYPOINT ["/usr/bin/zsh"]
