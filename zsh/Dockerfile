@@ -2,7 +2,7 @@ FROM dhi.io/debian-base:trixie-dev@sha256:61025cea33d5910165ced8b33edd3f6b6bfe16
 
 RUN apt-get update && \
     apt-get download \
-      zsh=5.9-8+b24 \
+      zsh=5.9-8* \
       zsh-common=5.9-8 && \
     for deb in *.deb; do dpkg-deb -x "$deb" /opt/zsh; done
 
