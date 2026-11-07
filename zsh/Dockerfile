@@ -1,4 +1,4 @@
-FROM dhi.io/debian-base:trixie-dev@sha256:9e479c64f8d27f8fa368ef62804c2ddb9b3e43a68c13a200b2f668b4771b049e AS build
+FROM dhi.io/debian-base:trixie-dev@sha256:61025cea33d5910165ced8b33edd3f6b6bfe161e129174887936a1b9a1442b20 AS build
 
 RUN apt-get update && \
     apt-get download \
@@ -10,7 +10,7 @@ ADD https://github.com/ohmyzsh/ohmyzsh.git#17a2b4c3a5855524ad4772a17ada0dc474e2f
 ADD https://github.com/sindresorhus/pure.git#cac55d0b531a0db72294c9bba9453dfa6374c59d /opt/zsh/usr/share/zsh/pure
 COPY .zshrc /opt/zsh/root/.zshrc
 
-FROM dhi.io/debian-base:trixie-dev@sha256:9e479c64f8d27f8fa368ef62804c2ddb9b3e43a68c13a200b2f668b4771b049e
+FROM dhi.io/debian-base:trixie-dev@sha256:61025cea33d5910165ced8b33edd3f6b6bfe161e129174887936a1b9a1442b20
 ENV LANG=C.UTF-8
 
 COPY --from=build /opt/zsh /opt/zsh
