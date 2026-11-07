@@ -25,5 +25,6 @@ target "workspace-py" {
     uv  = "target:uv"
     zsh = "target:zsh"
   }
+  tags   = ["startown/workspace-py:0.1.0"]
   attest = ["type=provenance,mode=min", "type=sbom"]
 }
