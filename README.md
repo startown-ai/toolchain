@@ -1,36 +1,43 @@
 # Toolchain
 
-This project containerizes some commonly used development tools on [Docker Hardened Images](https://docs.docker.com/dhi/).
+![Docker Hub](https://img.shields.io/docker/v/startown/workspace-py?sort=date&label=docker%20hub&logo=docker&logoColor=white&style=flat-square) ![Image size](https://img.shields.io/docker/image-size/startown/workspace-py/0.1.0?label=size&style=flat-square) ![License](https://img.shields.io/github/license/startown-ai/toolchain?style=flat-square)
 
-## Images
+A workspace for Python development on [Docker Hardened Images](https://docs.docker.com/dhi/), with:
 
-- [startown/zsh](https://hub.docker.com/r/startown/zsh): [Zsh](https://www.zsh.org) with [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh), [Pure](https://github.com/sindresorhus/pure) prompt, [z](https://github.com/agkozak/zsh-z), [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), and [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions).
-- [startown/jj](https://hub.docker.com/r/startown/jj): [Jujutsu](https://github.com/jj-vcs/jj), a version control system.
-- [startown/uv](https://hub.docker.com/r/startown/uv): [uv](https://github.com/astral-sh/uv), a Python package and project manager, with uvx.
-- [startown/workspace-py](https://hub.docker.com/r/startown/workspace-py): a workspace for Python development with the tools above, Git, and Python 3.14.
+- [uv](https://github.com/astral-sh/uv) and uvx, and Python 3.14 installed through uv
+- [Jujutsu](https://github.com/jj-vcs/jj) (jj) and Git
+- [Zsh](https://www.zsh.org) with [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh), the [Pure](https://github.com/sindresorhus/pure) prompt, [z](https://github.com/agkozak/zsh-z), [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), and [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- OpenSSH client, tree, and btop
+
+## Installation
+
+Pull the image:
+
+```bash
+docker pull startown/workspace-py:0.1.0
+```
+
+## Usage
+
+Use it as a dev container image in `.devcontainer/devcontainer.json`:
+
+```json
+{
+  "image": "startown/workspace-py:0.1.0",
+  "containerEnv": {
+    "SSL_CERT_FILE": "/etc/ssl/certs/ca-certificates.crt"
+  }
+}
+```
+
+`SSL_CERT_FILE` points Python at the system certificates; without it, HTTPS requests from Python fail certificate verification.
+
+Or start a shell in the current folder:
+
+```bash
+docker run -it --rm -v "$PWD":/workspace -w /workspace startown/workspace-py:0.1.0
+```
 
 ## License
 
-The Dockerfiles and configuration files in this repository are licensed under the [Apache License 2.0](LICENSE).
-
-The images contain third-party software under its own licenses. No third-party code is modified.
-
-| Component | License | License files in the image |
-|---|---|---|
-| Debian packages from the base image and `apt-get` | Various, per package | `/usr/share/doc/<package>/copyright`, `/usr/share/common-licenses/` |
-| Zsh | MIT-Modern-Variant, with some GPL-2.0 completion functions | `/usr/share/doc/zsh/copyright` |
-| Oh My Zsh | MIT | `/usr/share/oh-my-zsh/LICENSE.txt` |
-| z, zsh-autosuggestions | MIT | `/usr/share/oh-my-zsh/plugins/<plugin>/LICENSE` |
-| zsh-syntax-highlighting | BSD-3-Clause | `/usr/share/oh-my-zsh/plugins/zsh-syntax-highlighting/LICENSE` |
-| Pure | MIT | `/usr/share/zsh/pure/license` |
-| jj | Apache-2.0 | `/opt/jj/share/licenses/jj/` |
-| uv, uvx | MIT OR Apache-2.0 | `/opt/uv/share/licenses/uv/` |
-| Rust crates compiled into jj and uv | Various permissive licenses and MPL-2.0 | `THIRD-PARTY-LICENSES` in the jj and uv license folders |
-| Git | GPL-2.0-only | `/usr/share/doc/git/copyright` |
-| tree | GPL-2.0-or-later | `/usr/share/doc/tree/copyright` |
-| btop | Apache-2.0 | `/usr/share/doc/btop/copyright` |
-| OpenSSH client | SSH-OpenSSH | `/usr/share/doc/openssh-client/copyright` |
-| Python | Python-2.0 | `/usr/local/share/licenses/python/` |
-| Libraries bundled into Python | Various, including OpenSSL (Apache-2.0) and Berkeley DB (Sleepycat) | `/usr/local/share/licenses/python/` |
-
-In workspace-py, the jj and uv license folders are under `/usr/local/share/licenses/`.
+This repository is licensed under the [Apache License 2.0](LICENSE). The software in the image keeps its own licenses, and their license files ship in the image.
