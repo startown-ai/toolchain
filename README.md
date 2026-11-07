@@ -1,6 +1,6 @@
-# Toolchain
+# workspace-py
 
-![Docker Hub](https://img.shields.io/docker/v/startown/workspace-py?sort=date&label=docker%20hub&logo=docker&logoColor=white&style=flat-square) ![Image size](https://img.shields.io/docker/image-size/startown/workspace-py/0.1.0?label=size&style=flat-square) ![License](https://img.shields.io/github/license/startown-ai/toolchain?style=flat-square)
+![Docker Hub](https://img.shields.io/docker/v/startown/workspace-py?sort=date&label=docker%20hub&logo=docker&logoColor=white&style=flat-square) ![Image size](https://img.shields.io/docker/image-size/startown/workspace-py/0.1.0?label=size&style=flat-square) ![License](https://img.shields.io/github/license/startown-ai/workspace-py?style=flat-square)
 
 A workspace for Python development on [Docker Hardened Images](https://docs.docker.com/dhi/), with:
 
