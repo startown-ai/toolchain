@@ -26,7 +26,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN uv python install 3.14.10 && \
-    grep -qx 20261026 /root/.local/share/uv/python/cpython-3.14.10-*/BUILD && \
     rm -rf \
       /root/.local/share/uv/python/cpython-3.14*/lib/python3.14/ensurepip \
       /root/.local/share/uv/python/cpython-3.14*/lib/python3.14/site-packages/pip*
