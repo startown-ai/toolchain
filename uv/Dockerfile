@@ -25,7 +25,6 @@ RUN src=$(echo "${CARGO_HOME:-$HOME/.cargo}"/registry/src/*/uv-0.13.6) && \
       --output-file /opt/uv/share/licenses/uv/THIRD-PARTY-LICENSES \
       /tmp/about/about.hbs
 
-FROM dhi.io/debian-base:trixie-dev@sha256:61025cea33d5910165ced8b33edd3f6b6bfe161e129174887936a1b9a1442b20
-COPY --from=build /opt/uv /opt/uv
+FROM scratch
 
-ENTRYPOINT ["/opt/uv/bin/uv"]
+COPY --from=build /opt/uv /opt/uv

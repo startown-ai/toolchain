@@ -10,11 +10,11 @@ RUN apt-get update && \
 FROM dhi.io/debian-base:trixie-dev@sha256:61025cea33d5910165ced8b33edd3f6b6bfe161e129174887936a1b9a1442b20
 ENV LANG=C.UTF-8
 
-COPY --from=startown/zsh:5.9@sha256:43bfacc6be40f3a57e4cee92bcc5deac452b96781543ab78b6128f98639c1047 /opt/zsh /
-COPY --from=startown/uv:0.13.6@sha256:dbe377505ec7674eac78833436eba81cfa88ce7d0ebeae85188e1b5017ea62ba /opt/uv/bin/ /usr/local/bin/
-COPY --from=startown/uv:0.13.6@sha256:dbe377505ec7674eac78833436eba81cfa88ce7d0ebeae85188e1b5017ea62ba /opt/uv/share/licenses/ /usr/local/share/licenses/
-COPY --from=startown/jj:0.46.0@sha256:a9d89af1488a196ca249bf16bd46f2c063dad9305401006faed49b86bf92e2e5 /opt/jj/bin/jj /usr/local/bin/jj
-COPY --from=startown/jj:0.46.0@sha256:a9d89af1488a196ca249bf16bd46f2c063dad9305401006faed49b86bf92e2e5 /opt/jj/share/licenses/ /usr/local/share/licenses/
+COPY --from=zsh /opt/zsh /
+COPY --from=uv /opt/uv/bin/ /usr/local/bin/
+COPY --from=uv /opt/uv/share/licenses/ /usr/local/share/licenses/
+COPY --from=jj /opt/jj/bin/jj /usr/local/bin/jj
+COPY --from=jj /opt/jj/share/licenses/ /usr/local/share/licenses/
 COPY --from=python-licenses /opt/python/share/licenses/ /usr/local/share/licenses/
 
 RUN apt-get update && \
