@@ -10,10 +10,10 @@ RUN cargo install \
       --locked \
       --root /opt/jj \
       --bin jj jj-cli \
-      --version 0.46.0
+      --version 0.47.1
 
 COPY about.toml about.hbs /tmp/about/
-RUN src=$(echo "${CARGO_HOME:-$HOME/.cargo}"/registry/src/*/jj-cli-0.46.0) && \
+RUN src=$(echo "${CARGO_HOME:-$HOME/.cargo}"/registry/src/*/jj-cli-0.47.1) && \
     install -D -m 644 -t /opt/jj/share/licenses/jj "$src/LICENSE" && \
     cargo about generate \
       --locked \
