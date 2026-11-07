@@ -19,6 +19,6 @@ target "workspace-py" {
     jj  = "target:jj"
     zsh = "target:zsh"
   }
-  tags   = ["startown/workspace-py:0.1.0"]
+  tags   = ["startown/workspace-py:0.2.0"]
   attest = ["type=provenance,mode=min", "type=sbom"]
 }
